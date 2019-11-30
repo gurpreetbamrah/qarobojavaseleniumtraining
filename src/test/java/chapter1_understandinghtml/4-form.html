@@ -1,0 +1,57 @@
+<html>
+<head>
+    <style>
+body {background-color: lightgrey;}
+#div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+</style>
+
+</head>
+<body>
+<form action="#" id="demo">
+    <fieldset>
+        <h1><legend>TEST FORM</legend></h1>
+        <p>First name:<input type="text" name="firstname" value="" id="namefirst">
+        <p>Last name:<input type="text" name="lastname" value=""></p>
+        <p>Gender:  <input type="radio" name="sex" value="male">Male<input type="radio" name="sex" value="female">Female</p>
+        <p>Country	<select name="Country">
+            <option value="India">India</option>
+            <option value="USA">USA</option>
+            <option value="Australia">Australia</option>
+            <option value="Russsia">Russia</option></select></p>
+        <p>Skill Set
+            <input type="checkbox" name="Selenium" value="sel">Selenium
+            <input type="checkbox" name="Java" value="jav">Java
+            <input type="checkbox" name="Appium" value="app">Appium</p>
+        <!-- <p>DOB<input type="date" name="bday"></p> -->
+        <p>Upload Image: <input type="file" name="pic" id="pic"><br>
+        <p>Alert<input type="button" onclick="myFunction()" value="I am Alert"/></p>
+        <p>Drag and Drop:
+            <br><div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div></p>
+        <br>
+        <img id="drag1" src="drag.jpg" draggable="true" ondragstart="drag(event)" width="336" height="69">
+        <br><br>
+        <input type="submit" value="Submit" onclick="Submitfunction(this.form)">
+    </fieldset>
+</form>
+</body>
+<script>
+function myFunction() {
+    alert("I am an alert box!");
+}
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+}
+function Submitfunction(form) {
+var name = form.firstname.value+" "+form.lastname.value;
+document.getElementById("demo").innerHTML = name+" Thank You for Your Submission";
+}
+</script>
+</html>

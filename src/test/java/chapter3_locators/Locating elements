@@ -1,0 +1,77 @@
+Locating UI Elements (WebElements)
+
+Locating elements in WebDriver can be done on the WebDriver
+instance itself or on a WebElement. Each of the language bindings
+expose a “Find Element” and “Find Elements” method. The first
+returns a WebElement object otherwise it throws an exception.
+The latter returns a list of WebElements, it can return an empty
+ list if no DOM elements match the query.
+
+This is the most efficient and preferred way to locate an element.
+Common pitfalls that UI developers make is having non-unique id’s
+on a page or auto-generating the id, both should be avoided.
+A class on an html element is more appropriate than an auto-generated id.
+The “Find” methods take a locator or query object called “By”.
+“By” strategies are listed below.
+----------------------------------------------------------------------
+<div id="coolestWidgetEvah">...</div>
+WebElement element = driver.findElement(By.id("coolestWidgetEvah"));
+-----------------------------------------------------------------------
+By Class Name
+“Class” in this case refers to the attribute on the DOM element.
+Often in practical use there are many DOM elements with the same
+class name, thus finding multiple elements becomes the more
+practical option over finding the first element
+
+class="cheese"><span>Cheddar</span></div><div class="cheese"><span>Gouda</span></div
+List<WebElement> cheeses = driver.findElements(By.className("cheese"));
+-------------------------------------------------------------------------
+
+By Tag Name
+
+The DOM Tag Name of the element.
+Example of how to find an element that looks like this:
+
+<iframe src="..."></iframe>
+WebElement frame = driver.findElement(By.tagName("iframe"));
+-------------------------------------------------------------------------
+By Name
+Find the input element with matching name attribute.
+Example of how to find an element that looks like this:
+
+<input name="cheese" type="text"/>
+WebElement cheese = driver.findElement(By.name("cheese"));
+--------------------------------------------------------------------------
+By Link Text
+Find the link element with matching visible text.
+Example of how to find an element that looks like this:
+<a href="http://www.google.com/search?q=cheese">cheese</a>>
+
+--------------------------------------------------------------------------
+
+By Partial Link Text
+Find the link element with partial matching visible text.
+Example of how to find an element that looks like this:
+<a href="http://www.google.com/search?q=cheese">search for cheese</a>>
+WebElement cheese = driver.findElement(By.partialLinkText("cheese"));
+--------------------------------------------------------------------------
+By CSS
+
+Like the name implies it is a locator strategy by css.
+ Native browser support is used by default,
+ so please refer to w3c css selectors
+ <http://www.w3.org/TR/CSS/#selectors>
+ for a list of generally available css selectors.
+  If a browser does not have native support for css queries,
+   then Sizzle is used. IE 6,7 and FF3.0 currently
+   use Sizzle as the css query engine.
+
+id="food"><span class="dairy">milk</span><span class="dairy aged">cheese</span></div>
+WebElement cheese = driver.findElement(By.cssSelector("#food span.dairy.aged"));
+--------------------------------------------------------------------------
+
+At a high level, WebDriver uses a browser’s native XPath capabilities wherever possible. On those browsers that don’t have native XPath support, we have provided our own implementation. This can lead to some unexpected behaviour unless you are aware of the differences in the various xpath engines
+<input type="text" name="example" />
+<INPUT type="text" name="other" />
+List<WebElement> inputs = driver.findElements(By.xpath("//input"));
+--------------------------------------------------------------------------
