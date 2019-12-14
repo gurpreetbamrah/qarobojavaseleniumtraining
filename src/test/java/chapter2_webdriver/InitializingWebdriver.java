@@ -33,7 +33,7 @@ public class InitializingWebdriver {
     public void initdriver() {
         String userDIR=System.getProperty("user.dir");
         System.out.println(userDIR);
-        System.setProperty("webdriver.chrome.driver", userDIR+"/chromedriver");
+        System.setProperty("webdriver.chrome.driver", userDIR+"/chromedriver.exe");
         driver = new ChromeDriver();
 
     }

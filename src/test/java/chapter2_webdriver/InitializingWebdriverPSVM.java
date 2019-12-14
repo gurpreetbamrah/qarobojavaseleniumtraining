@@ -3,7 +3,12 @@ package chapter2_webdriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import javax.xml.bind.Element;
+import java.util.List;
 
 public class InitializingWebdriverPSVM {
 
@@ -49,6 +54,14 @@ public class InitializingWebdriverPSVM {
 
     public void closeBrowser() {
         driver.close();
+    }
+
+
+
+    public void selectElement(){
+        WebElement element=driver.findElement(By.id("selectCityCountry"));
+        Select select=new Select(element);
+        select.selectByVisibleText("Dublin City");
     }
 }
 

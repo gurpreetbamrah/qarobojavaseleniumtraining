@@ -1,9 +1,12 @@
 package chapter4_seleniummethods;
+
 import io.github.bonigarcia.wdm.ChromeDriverManager;
-import org.junit.Before;
-import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import static io.github.bonigarcia.wdm.DriverManagerType.CHROME;
 
 /**
@@ -13,76 +16,98 @@ import static io.github.bonigarcia.wdm.DriverManagerType.CHROME;
 
 public class SeleniumMethods {
 
-   static WebDriver driver=null;
+    static WebDriver driver = null;
 
-    @Before
-    public void initDriver(){
-       // WebDriverManager.getInstance(FIREFOX).version("2.39").setup();
-       // WebDriverManager.firefoxdriver().setup();
-      //  WebDriverManager.getInstance(FIREFOX).setup();
-      //  FirefoxDriverManager.getInstance(FIREFOX).setup();
+
+    public void initDriver() {
         ChromeDriverManager.getInstance(CHROME).setup();
         driver = new ChromeDriver();
     }
 
 
-    @Test
     public void getURl() {
-        driver.get("http://www.google.com");
-       // driver.close();
+        // This method used to open browser
+        driver.get("https://www.snapdeal.com/");
     }
 
-//    @Test
-//    public void Navigate() {
-//        driver.navigate().to("http://www.google.com");
-//        driver.close();
-//    }
-//
-//    @Test
-//    public void navigateForward() {
-//        driver.navigate().to("http://gsbamrah.github.io");
-//        driver.findElement(By.id("prac-form"));
-//        driver.navigate().back();
-//
-//        driver.navigate().forward();
-//
-//        driver.navigate().refresh();
-//
-//
-//    }
-//
-//    @Test
-//    public void enterText() {
-//        WebElement namefirst = driver.findElement(By.name("firstname"));
-//        namefirst.sendKeys("gurpreet");
-//        WebElement namelast = driver.findElement(By.name("lastname"));
-//        namelast.sendKeys("singh");
-//    }
-//
-//    @Test
-//    public void clearText() {
-//        driver.findElement(By.id("")).clear();
-//    }
-//
-//    @Test
-//    public void clickButton() throws  IOException{
-//        driver.manage().window().maximize();
-//        driver.get("http://gsbamrah.github.io");
-//        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-//        WebElement Element = driver.findElement(By.id("prac-form"));
-//        Element.click();
-//        WebElement Element2 = driver.findElement(By.linkText("Forms"));
-//        Element2.click();
-//        String verifyurl = driver.getCurrentUrl();
-//        Assert.assertTrue(verifyurl.contains("form.html"));
-//        enterText();
-//        selectfromDropDown();
-//        playwithcheck();
-//        SelectMultipleCheckbox();
-//        uploadImage();
-//      //  driver.close();
-//
-//    }
+
+    public static void main(String[] args) throws InterruptedException {
+        SeleniumMethods seleniumMethods = new SeleniumMethods();
+        seleniumMethods.initDriver();
+        seleniumMethods.maximizeWindow();
+        seleniumMethods.getURl();
+        seleniumMethods.navigateTo();
+        seleniumMethods.enterText();
+        seleniumMethods.clearText();
+        seleniumMethods.enterText();
+      //  seleniumMethods.clickElement();
+        seleniumMethods.clickElementUsingJavaScript();
+        seleniumMethods.closeBrowser();
+
+    }
+
+    public void maximizeWindow()
+    {
+        driver.manage().window().maximize();
+    }
+
+
+    public void navigateTo() {
+        driver.navigate().to("https://www.snapdeal.com/products/digital-entertainment?sort=plrty");
+        driver.navigate().refresh();
+        driver.navigate().back();
+        driver.navigate().forward();
+    }
+
+    public void enterText() throws InterruptedException {
+        WebElement searchTextBox = driver.findElement(By.id("inputValEnter"));
+        searchTextBox.sendKeys("Watch");
+        Thread.sleep(5000);
+    }
+
+
+    public void closeBrowser() {
+        driver.close();
+    }
+
+
+    public void clearText() throws InterruptedException {
+        driver.findElement(By.id("inputValEnter")).clear();
+        Thread.sleep(5000);
+    }
+
+    public void clickElement(){
+        driver.findElement(By.xpath("//span[@class='searchTextSpan']")).click();
+    }
+
+    public void clickElementUsingJavaScript(){
+        WebElement element = driver.findElement(By.xpath("//span[@class='searchTextSpan']"));
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", element);
+    }
+
+
+
+    /*
+    public void clickButton() throws  IOException{
+        driver.manage().window().maximize();
+        driver.get("http://gsbamrah.github.io");
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        WebElement Element = driver.findElement(By.id("prac-form"));
+        Element.click();
+        WebElement Element2 = driver.findElement(By.linkText("Forms"));
+        Element2.click();
+        String verifyurl = driver.getCurrentUrl();
+      //  Assert.assertTrue(verifyurl.contains("form.html"));
+        enterText();
+        selectfromDropDown();
+        playwithcheck();
+        SelectMultipleCheckbox();
+        uploadImage();
+      //  driver.close();
+
+    }
+    */
 //
 //    @Test
 //    public void elementEnabledOrNot() {
@@ -188,10 +213,9 @@ public class SeleniumMethods {
 //    }
 
 
- //  JavascriptExecutor jse = (JavascriptExecutor) driver;
+    //  JavascriptExecutor jse = (JavascriptExecutor) driver;
 //    jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-  //  jse.executeScript("scroll(0,300)");
-
+    //  jse.executeScript("scroll(0,300)");
 
 
 }
