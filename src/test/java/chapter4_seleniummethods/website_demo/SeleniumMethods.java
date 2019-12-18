@@ -1,4 +1,4 @@
-package chapter4_seleniummethods;
+package chapter4_seleniummethods.website_demo;
 
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.By;
@@ -40,14 +40,18 @@ public class SeleniumMethods {
         seleniumMethods.enterText();
         seleniumMethods.clearText();
         seleniumMethods.enterText();
-      //  seleniumMethods.clickElement();
+        //  seleniumMethods.clickElement();
         seleniumMethods.clickElementUsingJavaScript();
+
         seleniumMethods.closeBrowser();
 
     }
 
-    public void maximizeWindow()
-    {
+
+
+
+
+    public void maximizeWindow() {
         driver.manage().window().maximize();
     }
 
@@ -76,119 +80,16 @@ public class SeleniumMethods {
         Thread.sleep(5000);
     }
 
-    public void clickElement(){
+    public void clickElement() {
         driver.findElement(By.xpath("//span[@class='searchTextSpan']")).click();
     }
 
-    public void clickElementUsingJavaScript(){
+    public void clickElementUsingJavaScript() {
         WebElement element = driver.findElement(By.xpath("//span[@class='searchTextSpan']"));
-        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", element);
     }
 
-
-
-    /*
-    public void clickButton() throws  IOException{
-        driver.manage().window().maximize();
-        driver.get("http://gsbamrah.github.io");
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        WebElement Element = driver.findElement(By.id("prac-form"));
-        Element.click();
-        WebElement Element2 = driver.findElement(By.linkText("Forms"));
-        Element2.click();
-        String verifyurl = driver.getCurrentUrl();
-      //  Assert.assertTrue(verifyurl.contains("form.html"));
-        enterText();
-        selectfromDropDown();
-        playwithcheck();
-        SelectMultipleCheckbox();
-        uploadImage();
-      //  driver.close();
-
-    }
-    */
-//
-//    @Test
-//    public void elementEnabledOrNot() {
-//        driver.findElement(By.id("")).isEnabled();
-//    }
-//
-//    @Test
-//    public void handlingAlert() {
-//        Alert alert = driver.switchTo().alert();
-//        alert.accept();
-//        // alert.dismiss();
-//
-//    }
-//
-//    @Test
-//    public void DragAndDrop() {
-//        Actions builder = new Actions(driver);
-//        WebElement source = driver.findElement(By.id(""));
-//        WebElement target = driver.findElement(By.id(""));
-//        builder.dragAndDrop(source, target).perform();
-//        // DragAndDrop(source,target);
-//    }
-//
-//    @Test
-//    public void moveToElement() {
-//        driver.get("http://gsbamrah.github.io");
-//        WebElement Element = driver.findElement(By.id("prac-form"));
-//        Actions builder = new Actions(driver);
-//        builder.moveToElement(Element).perform();
-//    }
-//
-//    @Test
-//    public void MaximizeWindow() {
-//        driver.manage().window().maximize();
-//    }
-//
-//    @Test
-//    public void selectfromDropDown() {
-//        WebElement element = driver.findElement(By.name("Country"));
-//        Select sl = new Select(element);
-//        sl.selectByValue("Australia");
-//
-//
-//
-//
-//    }
-//        /*
-//        List<WebElement> options=driver.findElements(By.tagName("Country"));
-//
-//        for(WebElement option:options)
-//        {
-//       option.click();
-//    }
-//*/
-//
-//    @Test
-//    public void playwithcheck() {
-//        WebElement element = driver.findElement(By.xpath("//input[@name='vehicle1']"));
-//        element.click();
-//
-//    }
-//
-//    @Test
-//    public void SelectMultipleCheckbox() {
-//        List<WebElement> els = driver.findElements(By.xpath("//input[@type='checkbox']"));
-//        for (WebElement el : els) {
-//            if (!el.isSelected()) {
-//                el.click();
-//            }
-//        }
-//    }
-//
-//    @Test
-//    public void uploadImage() throws IOException {
-//
-//        WebElement element = driver.findElement(By.xpath("//input[@id='pic']"));
-//        element.click();
-//        Runtime.getRuntime().exec("C:/Users/gurpreetsingh/Desktop/fileupload.exe");
-//    }
-//
-//
 //
 //    @org.junit.Test
 //    public void HandlePopUP() throws InterruptedException {
