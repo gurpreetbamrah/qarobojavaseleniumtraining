@@ -21,5 +21,10 @@ class MoveToElementExample {
         Actions actions = new Actions(driver);
         WebElement element = driver.findElement(By.xpath("//span[text()='Testing']"));
         actions.moveToElement(element).build().perform();
+        WebElement element1=driver.findElement(By.xpath("//span[text()=' Selenium']"));
+        actions.moveToElement(element1).click().build().perform();
+//        actions.moveToElement(element).click();
+//        actions.moveToElement(element).clickAndHold();
+//        actions.moveToElement(element).doubleClick();
     }
 }

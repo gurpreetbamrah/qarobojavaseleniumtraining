@@ -180,6 +180,4 @@ public class HTMLFormExample {
         Actions act = new Actions(driver);
         act.dragAndDrop(drag, drop).build().perform();
     }
-
-
 }
